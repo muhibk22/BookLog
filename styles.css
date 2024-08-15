@@ -1,0 +1,10 @@
+body{
+    background-color: rgb(128, 83, 39);
+    background-image: url(background.jpg);
+    background-repeat: repeat; 
+    overflow-x: hidden;
+}
+
+.back{
+    min-height: 100vh;
+}
