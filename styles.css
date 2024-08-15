@@ -1,10 +1,18 @@
+*::before,
+*,
+*::after{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+h1,h2,p{
+    margin: 1em;
+}
+
 body{
     background-color: rgb(128, 83, 39);
-    background-image: url(background.jpg);
+    background-image: url(resources/background.jpg);
     background-repeat: repeat; 
     overflow-x: hidden;
 }
 
-.back{
-    min-height: 100vh;
-}
