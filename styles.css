@@ -3,16 +3,60 @@
 *::after{
     box-sizing: border-box;
     margin: 0;
+    font-family: "Kalam", cursive, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
-h1,h2,p{
-    margin: 1em;
-}
 
+h3{
+    color: red;
+}
+p{
+    color: rgb(0, 81, 13);
+}
 body{
     background-color: rgb(128, 83, 39);
     background-image: url(resources/background.jpg);
     background-repeat: repeat; 
     overflow-x: hidden;
+    position: relative;
+   
 }
 
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-self:center;
+    max-width:85vw ;
+}
+
+.new-entry{
+    position: fixed;
+    top: 90dvh;
+    left: 85dvw;
+    width: 10vw;
+    height: 5vh;
+    margin: 1em;
+    background-color: white;
+}
+
+.new-entry button{
+
+}
+.record{
+    width: 400px;
+    height: 480px;
+    background-image: url(resources/sticky.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 4rem;
+}
+
+.entry{
+    margin:4rem 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
