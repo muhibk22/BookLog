@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Cabin+Sketch:wght@400;700&family=Kalam:wght@300;400;700&family=Londrina+Sketch&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pirata+One&family=Quicksand:wght@300..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
-        </style>
+    </style>
 </head>
 
 <body>
@@ -41,9 +41,44 @@
                     <button type="button" class="delete"> &#10060;</button>
                 </div>
             </div>
-        </div>     
-      
+        </div>
     </div>
+    <div class="modal display-none">
+        <h2>Add New Record</h2>
+        <div class="form-container">
+            <form id="entry-form" class="entry-form">
+                <div class="form-group">
+                    <input type="text" name="title" class="title" placeholder="Title" required>
+                </div>
+            
+                <div class="form-group">
+                    <input type="text" name="author" class="author" placeholder="Author" required>
+                </div>
+            
+                <div class="form-group">
+                    <input type="number" name="pages" class="pages" min="0" placeholder="Number of pages" required>
+                </div>
+            
+                <div class="flex-column">
+                    <div class="radio">
+                        <input type="radio" name="status" value="read" id="read">
+                        <span>Read</span>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" name="status" value="not-read" id="not-read">
+                        <span>Not Read</span>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <button type="submit" id="submit">Add Book</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    
+
     <div class="new-entry">
         <button type="button" id="new-entry">New Book</button>
     </div>
