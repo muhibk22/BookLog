@@ -25,7 +25,6 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    align-self:center;
     max-width:85vw ;
     position: relative;
 }
@@ -85,11 +84,7 @@ body{
     left: 80%;
 }
 
-.flex-between{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 .modal{
     display: flex;
@@ -180,4 +175,38 @@ width: 80%;
 
 .display-none{
     display: none;
+}
+
+@media (max-width:1094px){
+    .record{
+        width: 280px;
+        height: 350px;
+        margin-left: 2rem;
+       
+    }
+    
+    .entry{
+        margin:2rem 1.3rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+    .delete{
+        font-size: 1.2rem;
+    }
+    .new-entry{
+        position: fixed;
+        top: 90%;
+        left: 90%;
+        width: 10rem;
+        height: 2rem;
+        margin: 1em;
+        font-family: Arial, Helvetica, sans-serif;
+        transform: translate(-50%, -50%);
+    }
+    
+    .new-entry button{
+        width: 6rem;
+        height: 5vh;
+        font-size: 1.1rem;
+    }
 }
