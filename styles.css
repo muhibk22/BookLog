@@ -157,7 +157,7 @@ width: 80%;
     justify-content: flex-start;
 
 }
- #submit{
+ #submit,#cancel{
     margin: 0 auto;
     padding: 0.4rem 1rem;
     font-size: 1.2rem;
@@ -169,7 +169,7 @@ width: 80%;
     transition: border-color 0.15s;
  }
 
- #submit:hover{
+ #submit:hover,#cancel:hover{
     border-color: white;
  }
 

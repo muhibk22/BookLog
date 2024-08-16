@@ -1,6 +1,7 @@
 const formButton = document.querySelector("#new-entry");
 const modal=document.querySelector("#modal");
 const addBook=document.querySelector("#submit");
+const cancelEntry=document.querySelector("#cancel");
 
 function deleteRecord(event){
     const index=event.target.getAttribute("data-index");
@@ -32,6 +33,11 @@ document.getElementById("entry-form").addEventListener("submit", function(event)
     modal.classList.add("display-none");
 });
 
+cancelEntry.addEventListener("click", function(){
+    modal.classList.add("display-none");
+});
+
+
 function addBookToLibrary(title,author,pages,read){
     const book=new Book(title,author,pages,read);
     for (let i=0; i<myLibrary.length; i++){
@@ -42,7 +48,7 @@ function addBookToLibrary(title,author,pages,read){
     }
     myLibrary.push(book);
     displayRecords();
-}
+};
 
 function displayRecords(){
     const container=document.querySelector(".container");
