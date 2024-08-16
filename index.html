@@ -38,25 +38,25 @@
                         <input type="radio" name="status" value="not-read">
                         Not Read
                     </label>
-                    <button type="button" class="delete"> &#10060;</button>
+                    <button type="button" class="delete" data-index="${index}"> &#10060;</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal display-none">
+    <div class="modal display-none" id="modal">
         <h2>Add New Record</h2>
         <div class="form-container">
             <form id="entry-form" class="entry-form">
                 <div class="form-group">
-                    <input type="text" name="title" class="title" placeholder="Title" required>
+                    <input type="text" name="title" id="title" placeholder="Title" required>
                 </div>
             
                 <div class="form-group">
-                    <input type="text" name="author" class="author" placeholder="Author" required>
+                    <input type="text" name="author" id="author" placeholder="Author" required>
                 </div>
             
                 <div class="form-group">
-                    <input type="number" name="pages" class="pages" min="0" placeholder="Number of pages" required>
+                    <input type="number" name="pages" id="pages" min="0" placeholder="Number of pages" required>
                 </div>
             
                 <div class="flex-column">
