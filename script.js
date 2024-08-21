@@ -1,69 +1,68 @@
-const formButton = document.querySelector("#new-entry");
-const modal=document.querySelector("#modal");
-const addBook=document.querySelector("#submit");
-const cancelEntry=document.querySelector("#cancel");
-
-function deleteRecord(event){
-    const index=event.target.getAttribute("data-index");
-    myLibrary.splice(index,1);
-    displayRecords();
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
+class Library {
+    constructor() {
+        this.books = [];
+        this.initializeEventListeners();
+    }
 
-const myLibrary=[];
+    initializeEventListeners() {
+        document.querySelector("#new-entry").addEventListener("click", () => {
+            document.querySelector("#modal").classList.remove("display-none");
+        });
 
-function Book(title,author,pages,read){
-    this.title=title;
-    this.author=author;
-    this.pages=pages;
-    this.read=read;
-};
+        document.querySelector("#entry-form").addEventListener("submit", (event) => {
+            event.preventDefault();
+            const title = document.getElementById("title").value;
+            const author = document.getElementById('author').value;
+            const pages = document.getElementById('pages').value;
+            const read = document.getElementById('read').checked;
+            this.addBookToLibrary(title, author, pages, read);
+            document.querySelector("#modal").classList.add("display-none");
+        });
 
-formButton.addEventListener("click", function(){
-    modal.classList.remove("display-none");
-});
+        document.querySelector("#cancel").addEventListener("click", () => {
+            document.querySelector("#modal").classList.add("display-none");
+        });
+    }
 
-document.getElementById("entry-form").addEventListener("submit", function(event){
-    event.preventDefault();
-    const title=document.getElementById("title").value;
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').checked;
-    addBookToLibrary(title,author,pages,read);
-    modal.classList.add("display-none");
-});
+    addBookToLibrary(title, author, pages, read) {
+        const newBook = new Book(title, author, pages, read);
+        const exists = this.books.some(book => book.title === newBook.title && book.author === newBook.author);
 
-cancelEntry.addEventListener("click", function(){
-    modal.classList.add("display-none");
-});
-
-
-function addBookToLibrary(title,author,pages,read){
-    const book=new Book(title,author,pages,read);
-    for (let i=0; i<myLibrary.length; i++){
-        if (book.title === myLibrary[i].title && book.author===myLibrary[i].author){
-            alert(`The book "${book.title}" by ${book.author} already exists in Book Log.`)
+        if (exists) {
+            alert(`The book "${newBook.title}" by ${newBook.author} already exists in the Book Log.`);
             return;
         }
-    }
-    myLibrary.push(book);
-    displayRecords();
-};
 
-function displayRecords(){
-    const container=document.querySelector(".container");
-    container.innerHTML="";
-    myLibrary.forEach((book, index)=>{
-        const record=document.createElement("div");
-        record.classList.add("record");
-        const entry=document.createElement("div");
-        entry.classList.add("entry");
-        entry.innerHTML=`<span class="title">
+        this.books.push(newBook);
+        this.displayRecords();
+    }
+
+    displayRecords() {
+        const container = document.querySelector(".container");
+        container.innerHTML = "";
+
+        this.books.forEach((book, index) => {
+            const record = document.createElement("div");
+            record.classList.add("record");
+
+            const entry = document.createElement("div");
+            entry.classList.add("entry");
+            entry.innerHTML = `
+                <span class="title">
                     <h3>Title:</h3>
                     <p>${book.title}</p>
                 </span>
                 <span class="author">
-                    <h3>Author Name: </h3>
+                    <h3>Author Name:</h3>
                     <p>${book.author}</p>
                 </span>
                 <span class="pages">
@@ -75,24 +74,37 @@ function displayRecords(){
                     Read
                 </label>
                 <br>
-                    <label>
-                        <input type="radio" name="status-${index}" value="not-read" ${!book.read? "checked" : ""}>
-                        Not Read
-                    </label>
-                    <button type="button" class="delete" data-index="${index}"> &#10060;</button>`;
+                <label>
+                    <input type="radio" name="status-${index}" value="not-read" ${!book.read ? "checked" : ""}>
+                    Not Read
+                </label>
+                <button type="button" class="delete" data-index="${index}">&#10060;</button>
+            `;
+
             record.appendChild(entry);
             container.appendChild(record);
-    });
-    const deleteButtons = document.querySelectorAll(".delete");
-    deleteButtons.forEach(button =>{
-        button.addEventListener("click", function(event){
-            deleteRecord(event);
         });
-    });
 
+        this.addDeleteEventListeners();
+    }
+
+    addDeleteEventListeners() {
+        const deleteButtons = document.querySelectorAll(".delete");
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", (event) => {
+                this.deleteRecord(event);
+            });
+        });
+    }
+
+    deleteRecord(event) {
+        const index = event.target.getAttribute("data-index");
+        this.books.splice(index, 1);
+        this.displayRecords();
+    }
 }
 
-addBookToLibrary("It", "Stephen King", 1138, true);
-addBookToLibrary("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 309, true);
+const myLibrary = new Library();
 
-
+myLibrary.addBookToLibrary("It", "Stephen King", 1138, true);
+myLibrary.addBookToLibrary("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 309, true);
